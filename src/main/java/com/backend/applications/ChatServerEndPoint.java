@@ -25,6 +25,7 @@ import com.backend.model.MessageThread;
 import com.backend.utils.MessageEncoder;
 import com.backend.utils.MessageDecoder;
 import com.backend.utils.MessageThreadEncoder;
+import com.backend.utils.UserImpl;
 import com.backend.utils.MessageThreadDecoder;
 
 
@@ -33,7 +34,6 @@ import com.backend.utils.MessageThreadDecoder;
 public class ChatServerEndPoint 
 {
 	public static final Map<String, MessageThread> messageThreads = Collections.synchronizedMap(new HashMap<String,MessageThread>());
-	
 	
 	public static final Map<String, Session> users = Collections.synchronizedMap(new HashMap<String,Session>());
 	

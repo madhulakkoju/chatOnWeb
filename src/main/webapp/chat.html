@@ -25,6 +25,7 @@ var room = '';
 var user = '';
 
 var messages =["abc","dfsdf","sdsdf","sfsdf","ffsfsd","dfsdfsdf","sdfgsdfsdf","dfSDfsd","dfsdssd ","fdfsdg"]
+
 var senderEmail ="Madhu@gmail.com";
 
 $(document).ready(function () {
@@ -32,7 +33,7 @@ $(document).ready(function () {
     $message = $('#message');
     $chatWindow = $('#showChat');
     $alert = $('#alert');
-
+	//senderEmail = '${sessionScope.userEmail}';
     connectToChatServer();
 
     $('#do-chat').submit(function (evt) {
@@ -42,8 +43,6 @@ $(document).ready(function () {
 
 
 });
-
-
 
 
 
