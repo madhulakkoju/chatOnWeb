@@ -95,7 +95,8 @@ function sendMessage()
 	updateChat(msg);
 
 	// Construct message to send to server
-    var mssg = '{"Sender":"' + senderEmail +'","MessageBody":"' + msg.MessageBody + '"}';   
+    //var mssg = '{"Sender":"' + senderEmail +'","MessageBody":"' + msg.MessageBody + '"}';   
+    var mssg = msg.MessageBody;
     wsocket.send(mssg);
 	console.log(mssg);
     // Put back focus

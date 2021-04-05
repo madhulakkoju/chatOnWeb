@@ -60,7 +60,7 @@ function connectToChatServer()
 function onMessageReceived(evt)
 {
 	var message = evt.data;
-	
+	console.log(message);
 	var table = document.getElementById("showChat");
 	
 	var tr=document.createElement('TR');

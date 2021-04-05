@@ -117,16 +117,16 @@ public class ChatServerEndPoint
 		//System.out.println("Message " + message.getSender());
 		System.out.println(message);
 		
-		
+		Session receiver = users.get("Madhu@gmail.com");
 		if(session == adminSession)
 		{
-			Session receiver = users.get("Madhu@gmail.com");
+			
 			if(receiver == null)
 			{
 				System.out.println("User Not Online");
 			}
 			try {
-				receiver.getBasicRemote().sendText(message);
+				receiver.getBasicRemote().sendText( message);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -139,7 +139,8 @@ public class ChatServerEndPoint
 		if(adminSession != null)
 		{
 			try {
-				adminSession.getBasicRemote().sendText(message);
+				
+				adminSession.getBasicRemote().sendText(receiver.getUserProperties().get("userEmail") +" : "+message);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -147,7 +148,8 @@ public class ChatServerEndPoint
 		}
 		else
 		{
-			messageQueue.add(message);
+			
+			messageQueue.add(receiver.getUserProperties().get("userEmail") +" : "+message);
 			try {
 				session.getBasicRemote().sendText("Admin is not available as of now. Please wait until we get back to you");
 				System.out.println("Admin is not available as of now. Please wait until we get back to you");
