@@ -72,14 +72,14 @@ public class ChatServerEndPoint
 			while(! messageQueue.isEmpty())
 			{
 				try {
-					session.getBasicRemote().sendObject(messageQueue.poll());
-				} catch (IOException | EncodeException e) {
+					session.getBasicRemote().sendText(messageQueue.poll());
+				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 			
-			System.out.println("Admin Logged in");
+			System.out.println("Admin Logged in   at    "+adminSession);
 			return ;
 		}
 		session.setMaxIdleTimeout(5*60*1000);
@@ -117,6 +117,25 @@ public class ChatServerEndPoint
 		//System.out.println("Message " + message.getSender());
 		System.out.println(message);
 		
+		
+		if(session == adminSession)
+		{
+			Session receiver = users.get("Madhu@gmail.com");
+			if(receiver == null)
+			{
+				System.out.println("User Not Online");
+			}
+			try {
+				receiver.getBasicRemote().sendText(message);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return;
+		}
+		
+		
+		
 		if(adminSession != null)
 		{
 			try {
@@ -145,6 +164,7 @@ public class ChatServerEndPoint
 	{
 		if(session == adminSession)
 		{
+			System.out.println("Session removed "+ session.getUserProperties().get("userEmail"));
 			adminSession = null;
 		}
 		else

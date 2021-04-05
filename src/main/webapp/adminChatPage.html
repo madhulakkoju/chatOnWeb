@@ -59,9 +59,19 @@ function connectToChatServer()
 
 function onMessageReceived(evt)
 {
-	var msg = JSON.parse(evt.data)
-	// add to frontend
-	return msg;
+	var message = evt.data;
+	
+	var table = document.getElementById("showChat");
+	
+	var tr=document.createElement('TR');
+	var td = document.createElement('TD')
+	td.appendChild(document.createTextNode(message))
+	tr.appendChild(td);
+	
+	table.appendChild(tr);
+
+	scrollDown();
+	
 }
 
 function onConnectionError(evt)
