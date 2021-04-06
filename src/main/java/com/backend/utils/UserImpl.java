@@ -24,6 +24,10 @@ public class UserImpl
 	
 	public static boolean authenticate(String email,String password)
 	{
+		if(allUsers.get(email)==null)
+		{
+			return false;
+		}
 		if(allUsers.get(email).getPassword().equals(password))
 			return true;
 		return false;

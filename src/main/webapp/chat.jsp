@@ -24,16 +24,15 @@ var $alert;
 var room = '';
 var user = '';
 
-var messages =["abc","dfsdf","sdsdf","sfsdf","ffsfsd","dfsdfsdf","sdfgsdfsdf","dfSDfsd","dfsdssd ","fdfsdg"]
+var messages =[]
 
-var senderEmail ="Madhu@gmail.com";
 
 $(document).ready(function () {
    
     $message = $('#message');
     $chatWindow = $('#showChat');
     $alert = $('#alert');
-	//senderEmail = '${sessionScope.userEmail}';
+	senderEmail = '<%= session.getAttribute("userEmail") %>';
     connectToChatServer();
 
     $('#do-chat').submit(function (evt) {
@@ -58,20 +57,28 @@ function connectToChatServer()
 
 function onMessageReceived(evt)
 {
-	//var msg = JSON.parse(evt.data)
+	console.log(evt.data);
+	var msg = JSON.parse(evt.data)
 	// add to frontend
-	var message ="Admin/System : "+ evt.data;
+	
 	var table = document.getElementById("showChat");
 	
+	//var msgargs = message.split(" ::: ");
+	
+	
 	var tr=document.createElement('TR');
+	
 	var td = document.createElement('TD')
-	td.appendChild(document.createTextNode(message))
+	td.appendChild(document.createTextNode(msg.Sender))
+	tr.appendChild(td);
+	
+	td = document.createElement('TD')
+	td.appendChild(document.createTextNode(msg.MessageBody))
 	tr.appendChild(td);
 	
 	table.appendChild(tr);
-
-	scrollDown();
 	
+	scrollDown();
 }
 
 function onConnectionError(evt)
@@ -86,17 +93,18 @@ function sendMessage()
 	msg = new Object();
 	msg.Sender = senderEmail;
 	msg.MessageBody = document.getElementById("message").value
-	msg.dt = new Date();
+	if(msg.MessageBody=="")
+		return;
     document.getElementById("message").value="";
 	
-	messages.push(msg);
+	//messages.push(msg);
 	// send the msg object to json to server for addition of the Data to database
 
 	updateChat(msg);
 
 	// Construct message to send to server
-    //var mssg = '{"Sender":"' + senderEmail +'","MessageBody":"' + msg.MessageBody + '"}';   
-    var mssg = msg.MessageBody;
+      
+    var mssg = JSON.stringify(msg);
     wsocket.send(mssg);
 	console.log(mssg);
     // Put back focus

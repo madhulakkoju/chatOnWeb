@@ -33,16 +33,18 @@ public class MessageDecoder implements Decoder.Text<Message>
 	@Override
 	public Message decode(String textMessage) throws DecodeException {
 		// TODO Auto-generated method stub
-		ObjectMapper mapper = new ObjectMapper();
-		Message message = mapper.convertValue(textMessage, Message.class);
-		System.out.println("decoder"+message);
+		System.out.println(textMessage);
+		JsonObject obj =Json.createReader(new StringReader(textMessage)).readObject();
+		
+		Message message = new Message(obj.getString("Sender"),obj.getString("MessageBody"),new Date());
+		
 		return message;
 	}
 
 	@Override
 	public boolean willDecode(String s) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 }

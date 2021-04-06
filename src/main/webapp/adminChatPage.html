@@ -59,15 +59,22 @@ function connectToChatServer()
 
 function onMessageReceived(evt)
 {
-	var message = evt.data;
+	var message = JSON.parse(evt.data); // sender ::: messageBody
 	console.log(message);
 	var table = document.getElementById("showChat");
 	
 	var tr=document.createElement('TR');
 	var td = document.createElement('TD')
-	td.appendChild(document.createTextNode(message))
+	td.appendChild(document.createTextNode(message.Sender));
 	tr.appendChild(td);
 	
+	td = document.createElement('TD')
+	td.appendChild(document.createTextNode("-"))
+	tr.appendChild(td);
+	
+	td = document.createElement('TD')
+	td.appendChild(document.createTextNode(message.MessageBody));
+	tr.appendChild(td);
 	table.appendChild(tr);
 
 	scrollDown();
@@ -84,18 +91,21 @@ function sendMessage()
 	console.log("Send Message");
 	
 	msg = new Object();
-	msg.Sender = senderEmail;
-	msg.MessageBody = document.getElementById("message").value
-	msg.dt = new Date();
+	msg.MessageBody = document.getElementById("message").value;
+	if(msg.MessageBody=="")
+		return;
+	msg.receiver = "ADMIN_USER";
+	msg.Sender =document.getElementById("email").value;
+	
     document.getElementById("message").value="";
 	
-	messages.push(msg);
+	//messages.push(msg);
 	// send the msg object to json to server for addition of the Data to database
-
+	
 	updateChat(msg);
-
+	msg.receiver = msg.Sender;
 	// Construct message to send to server
-    var mssg = '{"Sender":"' + senderEmail +'","MessageBody":"' + msg.MessageBody + '"}';   
+    var mssg = JSON.stringify(msg);
     wsocket.send(mssg);
 	console.log(mssg);
     // Put back focus
@@ -145,6 +155,10 @@ function updateChat(message)
 	tr.appendChild(td)
 	
 	td = document.createElement('TD')
+	td.appendChild(document.createTextNode(message.receiver))
+	tr.appendChild(td)
+	
+	td = document.createElement('TD')
 	td.appendChild(document.createTextNode(message.MessageBody))
 	tr.appendChild(td)
 	
@@ -183,6 +197,7 @@ function scrollDown()
 
 
 <form id = "do-chat">
+<input type="text" id="email" >
 <input type="text" id="message" style="padding: 5px;width: 500px;height:60px">
 <input type="submit" value="Send"/style="padding: 5px;width: 70px;height:60px">
 </form>

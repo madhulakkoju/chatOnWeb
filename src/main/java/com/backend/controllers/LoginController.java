@@ -14,17 +14,21 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
 
-@WebServlet("/login")
+@WebServlet("/loginController")
 public class LoginController extends HttpServlet {
 	
 	
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		HttpSession session = request.getSession();
+		System.out.println(session.getAttribute("userEmail"));
 		if(UserImpl.authenticate((String)request.getParameter("email"),(String)request.getParameter("password")))
 		{
-			HttpSession session = request.getSession();
+			
 			session.setAttribute("loggedIn", true);
+			
 			session.setAttribute("userEmail",(String)request.getParameter("email") );
+			System.out.println(session.getAttribute("userEmail"));
 			System.out.println("User Authenticated");
 			
 			if(session.getAttribute("userEmail").equals("ADMIN_USER"))
@@ -34,7 +38,7 @@ public class LoginController extends HttpServlet {
 			}
 			else
 			{
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/chat.html");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/chat.jsp");
 				dispatcher.forward(request,response);
 			}
 		}

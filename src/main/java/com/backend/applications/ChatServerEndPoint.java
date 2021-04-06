@@ -13,11 +13,10 @@ import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
+import javax.websocket.RemoteEndpoint.Basic;
 import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
-
-import org.codehaus.jackson.map.ObjectMapper;
 
 import com.backend.model.Message;
 import com.backend.model.MessageThread;
@@ -25,7 +24,6 @@ import com.backend.model.MessageThread;
 import com.backend.utils.MessageEncoder;
 import com.backend.utils.MessageDecoder;
 import com.backend.utils.MessageThreadEncoder;
-import com.backend.utils.UserImpl;
 import com.backend.utils.MessageThreadDecoder;
 
 
@@ -39,7 +37,7 @@ public class ChatServerEndPoint
 	
 	public static Session adminSession = null;
 	
-	public static Queue<String> messageQueue = new LinkedList<String>();
+	public static Queue<Message> messageQueue = new LinkedList<Message>();
 	
 	public static MessageThread getThread(String email)
 	{
@@ -51,37 +49,47 @@ public class ChatServerEndPoint
 		return thread;
 	}
 	
-	@OnOpen
-	public void onOpen(final Session session, @PathParam("userEmail") String email) {
-		System.out.println("Open new");
-		if(email.equals("ADMIN_USER"))
+	public static void sendMessageThread(Session session, String email)
+	{
+		MessageThread thread = getThread(email);
+		Basic remote = session.getBasicRemote();
+		for(Message m : thread.getMessages())
 		{
-			adminSession = session;
-			session.setMaxIdleTimeout(3*60*1000);
-			session.getUserProperties().putIfAbsent("userEmail", email);
-			/*
-			Map<String,MessageThread> threads = messageThreads;
 			try {
-				session.getBasicRemote().sendObject(threads);
-			} catch (IOException | EncodeException e) {
+				remote.sendText(m.getSender()+" ::: "+m.getText());
+			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			*/
-			
+		}
+		
+	}
+	
+	@OnOpen
+	public void onOpen(final Session session, @PathParam("userEmail") String email) {
+		System.out.println("Opening new Session/Connection");
+		Message m;
+		//Checking if the user is ADMIN
+		if(email.equals("ADMIN_USER"))
+		{
+			adminSession = session;
+			session.setMaxIdleTimeout(1*60*1000);
+			session.getUserProperties().putIfAbsent("userEmail", email);
+			// send the messages that were on the queue
 			while(! messageQueue.isEmpty())
 			{
 				try {
-					session.getBasicRemote().sendText(messageQueue.poll());
-				} catch (IOException e) {
+					m = messageQueue.poll();
+					session.getBasicRemote().sendObject( m);
+				} catch (IOException | EncodeException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-			
 			System.out.println("Admin Logged in   at    "+adminSession);
 			return ;
 		}
+		//Non - Admin User
 		session.setMaxIdleTimeout(5*60*1000);
 		session.getUserProperties().putIfAbsent("userEmail",email);
 		/*
@@ -100,64 +108,77 @@ public class ChatServerEndPoint
 		*/
 		
 		try {
-			session.getBasicRemote().sendObject(new Message("System","Hello Welcome"));
-			
+			session.getBasicRemote().sendObject( new Message("System","Welcome"));
 			users.put(email, session);
-			
+			//send all the previous messages to the User/Client
+			sendMessageThread(session,email);
 		} catch (IOException | EncodeException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	
 	@OnMessage
-	public void onMessage(String message,Session session)
+	public void onMessage(Message message,Session session)
 	{
-		//System.out.println("Message " + message.getSender());
-		System.out.println(message);
+		System.out.println(message.getSender()+"  ;;  "+message.getText());
+		// message format being receiver ::: message
+		String sender = (String) session.getUserProperties().get("userEmail");
 		
-		Session receiver = users.get("Madhu@gmail.com");
-		if(session == adminSession)
+		//String[] msgArgs = message.split(" ::: ");
+		//[0] is receiver
+		//[1] is message
+		
+		String[] msgArgs = {message.getSender(),message.getText()};
+		
+		//Sender is Admin
+		if(sender.equals("ADMIN_USER"))
 		{
-			
-			if(receiver == null)
+			message.setSender("ADMIN_USER");
+			//Admin sends message in format of Receiver ::: message
+			// so string sender is receiver here
+			if(users.get(msgArgs[0])==null)
 			{
-				System.out.println("User Not Online");
+				System.out.println(msgArgs[0] + " Offline");
 			}
-			try {
-				receiver.getBasicRemote().sendText( message);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			else
+			{
+				try {
+					
+				users.get(msgArgs[0]).getBasicRemote().sendObject(message);
+				} catch (EncodeException |IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+			// save this message to messageThread
+			
+			getThread(msgArgs[0]).addMessage(message);
+			
 			return;
 		}
 		
-		
-		
-		if(adminSession != null)
-		{
-			try {
-				
-				adminSession.getBasicRemote().sendText(receiver.getUserProperties().get("userEmail") +" : "+message);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 		else
 		{
-			
-			messageQueue.add(receiver.getUserProperties().get("userEmail") +" : "+message);
-			try {
-				session.getBasicRemote().sendText("Admin is not available as of now. Please wait until we get back to you");
-				System.out.println("Admin is not available as of now. Please wait until we get back to you");
-				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			// Admin ONLINE
+			if(adminSession != null)
+			{
+				//Send to Admin
+				try {
+					adminSession.getBasicRemote().sendObject(message);
+				} catch (IOException | EncodeException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+			// Admin Not ONLINE
+			else
+			{
+				//Add to message Queue and also to Message Thread
+				messageQueue.add(message);
+				
+			}
+			getThread(sender).addMessage(message);
 		}
 	} 
 	

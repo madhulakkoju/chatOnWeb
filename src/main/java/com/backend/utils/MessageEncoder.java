@@ -1,6 +1,7 @@
 package com.backend.utils;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.json.Json;
 import javax.json.JsonValue;
@@ -32,6 +33,7 @@ public class MessageEncoder implements Encoder.Text<Message> {
 	public String encode(Message message) {
 		// TODO Auto-generated method stub
 		
+		/*
 		ObjectMapper mapper = new ObjectMapper();
 		
 		try {
@@ -46,13 +48,24 @@ public class MessageEncoder implements Encoder.Text<Message> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
 		
+		return Json.createObjectBuilder()
+				.add("Sender",message.getSender())
+				.add("MessageBody",message.getText())
+				.add("Time",new Date().toString())
+				.build()
+				.toString();
+			
+		
+		/*
 		return Json.createObjectBuilder()
 			.add("Sender","System")
 			.add("MessageBody","Hello User")
+			.add("Time",new Date().toString())
 			.build()
 			.toString();
-		
+		*/
 			
 	}
 
