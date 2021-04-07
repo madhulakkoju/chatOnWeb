@@ -33,12 +33,6 @@ public class MessageThreadEncoder implements Encoder.Text<MessageThread> {
 	public String encode(MessageThread thread) throws EncodeException {
 		// TODO Auto-generated method stub
 		
-		
-		thread.addMessage(new Message("fsdf","dfsadfgddf"));
-		thread.addMessage(new Message("fsdfgsdfg","dfdfgdfgdsadf"));
-		thread.addMessage(new Message("fdfgsdf","dfsadfgdfgf"));
-		thread.addMessage(new Message("fsdfdgf","dfdfgdfgdfgdfgf"));
-		
 		StringBuilder encodedMessages = new StringBuilder("[");
 		for(Message m: thread.getMessages() )
 		{
