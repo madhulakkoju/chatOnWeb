@@ -61,6 +61,13 @@ function onMessageReceived(evt)
 	var msg = JSON.parse(evt.data)
 	// add to frontend
 	
+	if(Array.isArray(msg))
+	{
+		msg.pop();
+		buildChat(msg);
+		return;
+	}
+	
 	var table = document.getElementById("showChat");
 	
 	//var msgargs = message.split(" ::: ");
@@ -128,7 +135,7 @@ function constructURI(serviceLocation,user)
  */
 
 
-function buildChat()
+function buildChat(messages)
 {
 	var table = document.getElementById("showChat");
 	
@@ -136,8 +143,13 @@ function buildChat()
 	{
 		var tr=document.createElement('TR');
 		var td = document.createElement('TD')
-		td.appendChild(document.createTextNode(messages[i]))
+		td.appendChild(document.createTextNode(messages[i].Sender))
 		tr.appendChild(td)
+		
+		td = document.createElement('TD')
+		td.appendChild(document.createTextNode(messages[i].MessageBody))
+		tr.appendChild(td)
+		
 		table.appendChild(tr);
 	}
 	scrollDown();

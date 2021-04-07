@@ -85,16 +85,6 @@ public class ChatServerEndPoint
 			session.getUserProperties().putIfAbsent("userEmail", email);
 			// send the messages that were on the queue
 			
-			
-			try {
-				session.getBasicRemote().sendObject(new MessageThread("madhu.ml193@gmail.com"));
-			} catch (IOException | EncodeException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			
-			
-			
 			for(MessageThread thread : messageThreads.values() )
 			{
 				try {
