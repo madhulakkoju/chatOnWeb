@@ -33,7 +33,7 @@ public class LoginController extends HttpServlet {
 			
 			if(session.getAttribute("userEmail").equals("ADMIN_USER"))
 			{
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/adminChatPage.html");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/adminCheck.html");
 				dispatcher.forward(request,response);
 			}
 			else
