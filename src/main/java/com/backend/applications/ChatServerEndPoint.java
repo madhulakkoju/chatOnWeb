@@ -3,6 +3,7 @@ package com.backend.applications;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
@@ -38,7 +39,16 @@ public class ChatServerEndPoint
 	public static Session adminSession = null;
 	
 	public static Queue<Message> messageQueue = new LinkedList<Message>();
-	
+
+	public static void generateMessageThreadsToAllUsers(Iterator<String> iterator)
+	{
+		String email;
+		while(iterator.hasNext()) {
+			email = iterator.next();
+			messageThreads.putIfAbsent(email, new MessageThread(email));
+		}
+	}
+
 	public static MessageThread getThread(String email)
 	{
 		MessageThread thread = messageThreads.get(email);
@@ -53,14 +63,12 @@ public class ChatServerEndPoint
 	{
 		MessageThread thread = getThread(email);
 		Basic remote = session.getBasicRemote();
-		for(Message m : thread.getMessages())
-		{
-			try {
-				remote.sendText(m.getSender()+" ::: "+m.getText());
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		
+		try {
+			remote.sendObject(thread);
+		} catch (IOException | EncodeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 	}
@@ -73,9 +81,31 @@ public class ChatServerEndPoint
 		if(email.equals("ADMIN_USER"))
 		{
 			adminSession = session;
-			session.setMaxIdleTimeout(1*60*1000);
+			session.setMaxIdleTimeout(5*60*1000);
 			session.getUserProperties().putIfAbsent("userEmail", email);
 			// send the messages that were on the queue
+			
+			
+			try {
+				session.getBasicRemote().sendObject(new MessageThread("madhu.ml193@gmail.com"));
+			} catch (IOException | EncodeException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			
+			
+			for(MessageThread thread : messageThreads.values() )
+			{
+				try {
+					session.getBasicRemote().sendObject(thread);
+				} catch (IOException | EncodeException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			/*
 			while(! messageQueue.isEmpty())
 			{
 				try {
@@ -86,28 +116,17 @@ public class ChatServerEndPoint
 					e.printStackTrace();
 				}
 			}
+			*/
 			System.out.println("Admin Logged in   at    "+adminSession);
 			return ;
 		}
 		//Non - Admin User
 		session.setMaxIdleTimeout(5*60*1000);
 		session.getUserProperties().putIfAbsent("userEmail",email);
-		/*
+		
 		MessageThread thread = getThread(email);
-		
 		try {
-			// sending previous Chat / Help Data 
 			session.getBasicRemote().sendObject(thread);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (EncodeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
-		
-		try {
 			session.getBasicRemote().sendObject( new Message("System","Welcome"));
 			users.put(email, session);
 			//send all the previous messages to the User/Client

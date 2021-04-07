@@ -30,7 +30,7 @@ public class MessageThreadDecoder implements Decoder.Text<MessageThread> {
 	@Override
 	public boolean willDecode(String s) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 }

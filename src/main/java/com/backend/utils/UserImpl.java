@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.backend.applications.ChatServerEndPoint;
 import com.backend.model.MessageThread;
 import com.backend.model.User;
 
@@ -19,6 +20,8 @@ public class UserImpl
 		allUsers.put("kch1@gmail.com",new User("kch1@gmail.com", "kch"));
 		allUsers.put("madhu3@gmail.com", new User("madhu3@gmail.com","abc") );
 		allUsers.put("kch2@gmail.com",new User("kch2@gmail.com", "kch"));
+		
+		ChatServerEndPoint.generateMessageThreadsToAllUsers(allUsers.keySet().iterator());
 	}
 	
 	

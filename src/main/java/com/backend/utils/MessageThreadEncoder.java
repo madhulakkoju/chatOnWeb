@@ -1,7 +1,9 @@
 package com.backend.utils;
 
 import java.io.IOException;
+import java.util.Date;
 
+import javax.json.Json;
 import javax.websocket.EncodeException;
 import javax.websocket.Encoder;
 import javax.websocket.EndpointConfig;
@@ -30,37 +32,31 @@ public class MessageThreadEncoder implements Encoder.Text<MessageThread> {
 	@Override
 	public String encode(MessageThread thread) throws EncodeException {
 		// TODO Auto-generated method stub
+		
+		
 		thread.addMessage(new Message("fsdf","dfsadfgddf"));
 		thread.addMessage(new Message("fsdfgsdfg","dfdfgdfgdsadf"));
 		thread.addMessage(new Message("fdfgsdf","dfsadfgdfgf"));
 		thread.addMessage(new Message("fsdfdgf","dfdfgdfgdfgdfgf"));
-		ObjectMapper mapper = new ObjectMapper();
 		
-		String encoded="[";
-		
+		StringBuilder encodedMessages = new StringBuilder("[");
 		for(Message m: thread.getMessages() )
 		{
-			try {
-				
-				System.out.println(mapper.writeValueAsString(m));
-				encoded += mapper.writeValueAsString(m);
-				
-			} catch (JsonGenerationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (JsonMappingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+			encodedMessages.append(Json.createObjectBuilder()
+					.add("Sender",m.getSender())
+					.add("MessageBody",m.getText())
+					.build()
+					.toString()+", ");
 		}
-		
-		encoded += "]";
-		System.out.println(encoded);
-		return encoded;
+				
+		encodedMessages.append(Json.createObjectBuilder()
+				.add("Sender",thread.getParticipant())
+				.add("replied",thread.isReplied())
+				.build()
+				.toString());
+		encodedMessages.append("]");
+		System.out.println(encodedMessages);
+		return encodedMessages.toString();
 	}
 
 }
