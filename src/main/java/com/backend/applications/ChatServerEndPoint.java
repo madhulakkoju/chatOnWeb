@@ -19,6 +19,8 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
+import org.apache.log4j.Logger;
+
 import com.backend.model.Message;
 import com.backend.model.MessageThread;
 
@@ -32,6 +34,8 @@ import com.backend.utils.MessageThreadDecoder;
 @ServerEndpoint(value="/helpChat/{userEmail}", encoders = {MessageEncoder.class,MessageThreadEncoder.class}, decoders = {MessageDecoder.class,MessageThreadDecoder.class})
 public class ChatServerEndPoint 
 {
+	private static Logger log = Logger.getLogger(ChatServerEndPoint.class);
+	
 	public static final Map<String, MessageThread> messageThreads = Collections.synchronizedMap(new HashMap<String,MessageThread>());
 	
 	public static final Map<String, Session> users = Collections.synchronizedMap(new HashMap<String,Session>());
@@ -47,6 +51,7 @@ public class ChatServerEndPoint
 			email = iterator.next();
 			messageThreads.putIfAbsent(email, new MessageThread(email));
 		}
+		log.debug("Generated Empty Message Threads to users if needed");
 	}
 
 	public static MessageThread getThread(String email)
@@ -68,9 +73,10 @@ public class ChatServerEndPoint
 			remote.sendObject(thread);
 		} catch (IOException | EncodeException e) {
 			// TODO Auto-generated catch block
+			log.error("Cannot send Message Thread to "+ email);
 			e.printStackTrace();
 		}
-		
+		log.debug("Sent Message Thread user");
 	}
 	
 	@OnOpen
@@ -80,6 +86,7 @@ public class ChatServerEndPoint
 		//Checking if the user is ADMIN
 		if(email.equals("ADMIN_USER"))
 		{
+			log.debug("ADMIN logged in");
 			adminSession = session;
 			session.setMaxIdleTimeout(5*60*1000);
 			session.getUserProperties().putIfAbsent("userEmail", email);
@@ -92,6 +99,7 @@ public class ChatServerEndPoint
 				} catch (IOException | EncodeException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					log.error("Cannot send MessageThread");
 				}
 			}
 			
@@ -113,7 +121,7 @@ public class ChatServerEndPoint
 		//Non - Admin User
 		session.setMaxIdleTimeout(5*60*1000);
 		session.getUserProperties().putIfAbsent("userEmail",email);
-		
+		log.debug("User Logged in");
 		MessageThread thread = getThread(email);
 		try {
 			session.getBasicRemote().sendObject(thread);
@@ -137,7 +145,8 @@ public class ChatServerEndPoint
 		//String[] msgArgs = message.split(" ::: ");
 		//[0] is receiver
 		//[1] is message
-		
+		log.debug("Message Received at serrver");
+
 		String[] msgArgs = {message.getSender(),message.getText()};
 		
 		//Sender is Admin
@@ -194,6 +203,7 @@ public class ChatServerEndPoint
 	@OnClose
 	public void onClose(Session session, CloseReason reason)
 	{
+		log.debug(session.getUserProperties().get("userEmail") + "about to close");
 		if(session == adminSession)
 		{
 			System.out.println("Session removed "+ session.getUserProperties().get("userEmail"));
@@ -205,12 +215,13 @@ public class ChatServerEndPoint
 			users.remove(session.getUserProperties().get("userEmail"));
 			
 		}	
-		return;
+		log.debug("Session closed");
+
 	}
 	
     @OnError
     public void onError(Session session, @PathParam("userEmail") String email, Throwable throwable) {
-        System.out.println(throwable.getMessage());
+        log.error(throwable.getMessage());
     }
 	
 }

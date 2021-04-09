@@ -4,8 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 public class MessageThread implements Serializable
 {
+	private static Logger log = Logger.getLogger(MessageThread.class);
 	String participant;
 	List<Message> messagesList;
 	boolean replied;
@@ -16,6 +19,7 @@ public class MessageThread implements Serializable
 		messagesList = new ArrayList<Message>(10);
 		this.addMessage(new Message("SYSTEM","Hello "+participant));
 		replied = false;
+		log.debug("Message Thread Object Created for User : " + participant);
 	}
 	
 	public void addMessage(Message message)

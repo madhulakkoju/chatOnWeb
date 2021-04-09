@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.backend.utils.UserImpl;
 
 import java.io.IOException;
@@ -17,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 @WebServlet("/loginController")
 public class LoginController extends HttpServlet {
 	
+	private static Logger log =  Logger.getLogger(LoginController.class);
 	
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
@@ -24,12 +27,9 @@ public class LoginController extends HttpServlet {
 		System.out.println(session.getAttribute("userEmail"));
 		if(UserImpl.authenticate((String)request.getParameter("email"),(String)request.getParameter("password")))
 		{
-			
 			session.setAttribute("loggedIn", true);
-			
 			session.setAttribute("userEmail",(String)request.getParameter("email") );
-			System.out.println(session.getAttribute("userEmail"));
-			System.out.println("User Authenticated");
+			log.debug("User Authenticated : "+(String)request.getParameter("email"));
 			
 			if(session.getAttribute("userEmail").equals("ADMIN_USER"))
 			{

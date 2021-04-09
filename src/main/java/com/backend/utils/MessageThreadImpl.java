@@ -3,7 +3,11 @@ package com.backend.utils;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.log4j.FileAppender;
+
 import com.backend.model.MessageThread;
+
+import jdk.internal.org.jline.utils.Log;
 
 public class MessageThreadImpl 
 {
@@ -11,6 +15,7 @@ public class MessageThreadImpl
 	public MessageThreadImpl()
 	{
 		allMessageThreads = new HashMap<String,MessageThread>();
+
 	}
 	
 	public MessageThread getMessageThread(String participant)
@@ -24,6 +29,7 @@ public class MessageThreadImpl
 	public void deleteMessageThread(String participant)
 	{
 		allMessageThreads.remove(participant);
+		Log.debug("Message Thread Removed "+participant);
 	}
 	
 	public MessageThread createMessageThread(String participant)

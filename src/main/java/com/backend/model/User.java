@@ -1,7 +1,10 @@
 package com.backend.model;
 
+import org.apache.log4j.Logger;
+
 public class User 
 {
+	private static Logger log = Logger.getLogger(User.class);
 	final String email;
 	String password;
 	
@@ -9,6 +12,7 @@ public class User
 	{
 		this.email = email;
 		this.password = pwd;
+		log.debug("New User Registered : " + email);
 	}
 	
 	public String getEmail()

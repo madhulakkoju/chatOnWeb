@@ -1,0 +1,37 @@
+2021-04-09 09:58:56,436 DEBUG :org.jboss.resteasy.plugins.providers.FileProvider [<clinit>] Logging Provider: org.jboss.logging.Log4jLoggerProvider 
+2021-04-09 09:58:56,488 DEBUG :org.jboss.resteasy.plugins.providers.DocumentProvider [<init>] Provider : org.jboss.resteasy.plugins.providers.DocumentProvider,  Method : DocumentProvider 
+2021-04-09 09:58:56,504 DEBUG :org.jboss.resteasy.plugins.providers.DocumentProvider [<init>] Provider : org.jboss.resteasy.plugins.providers.DocumentProvider,  Method : DocumentProvider 
+2021-04-09 09:59:10,905 DEBUG :com.backend.model.User [<init>] New User Registered : ADMIN_USER 
+2021-04-09 09:59:10,906 DEBUG :com.backend.model.User [<init>] New User Registered : madhu.ml193@gmail.com 
+2021-04-09 09:59:10,933 DEBUG :com.backend.model.User [<init>] New User Registered : kch@gmail.com 
+2021-04-09 09:59:10,933 DEBUG :com.backend.model.User [<init>] New User Registered : madhu@gmail.com 
+2021-04-09 09:59:10,934 DEBUG :com.backend.model.User [<init>] New User Registered : kch1@gmail.com 
+2021-04-09 09:59:10,934 DEBUG :com.backend.model.User [<init>] New User Registered : madhu3@gmail.com 
+2021-04-09 09:59:10,934 DEBUG :com.backend.model.User [<init>] New User Registered : kch2@gmail.com 
+2021-04-09 09:59:10,935 DEBUG :com.backend.model.Message [<init>] Message Object Created 
+2021-04-09 09:59:10,936 DEBUG :com.backend.model.MessageThread [<init>] Message Thread Object Created for User : kch@gmail.com 
+2021-04-09 09:59:10,936 DEBUG :com.backend.model.Message [<init>] Message Object Created 
+2021-04-09 09:59:10,937 DEBUG :com.backend.model.MessageThread [<init>] Message Thread Object Created for User : kch1@gmail.com 
+2021-04-09 09:59:10,937 DEBUG :com.backend.model.Message [<init>] Message Object Created 
+2021-04-09 09:59:10,937 DEBUG :com.backend.model.MessageThread [<init>] Message Thread Object Created for User : madhu@gmail.com 
+2021-04-09 09:59:10,939 DEBUG :com.backend.model.Message [<init>] Message Object Created 
+2021-04-09 09:59:10,940 DEBUG :com.backend.model.MessageThread [<init>] Message Thread Object Created for User : madhu3@gmail.com 
+2021-04-09 09:59:10,940 DEBUG :com.backend.model.Message [<init>] Message Object Created 
+2021-04-09 09:59:10,940 DEBUG :com.backend.model.MessageThread [<init>] Message Thread Object Created for User : kch2@gmail.com 
+2021-04-09 09:59:10,940 DEBUG :com.backend.model.Message [<init>] Message Object Created 
+2021-04-09 09:59:10,941 DEBUG :com.backend.model.MessageThread [<init>] Message Thread Object Created for User : ADMIN_USER 
+2021-04-09 09:59:10,941 DEBUG :com.backend.model.Message [<init>] Message Object Created 
+2021-04-09 09:59:10,941 DEBUG :com.backend.model.MessageThread [<init>] Message Thread Object Created for User : madhu.ml193@gmail.com 
+2021-04-09 09:59:10,942 DEBUG :com.backend.applications.ChatServerEndPoint [generateMessageThreadsToAllUsers] Generated Empty Message Threads to users if needed 
+2021-04-09 09:59:10,942 DEBUG :com.backend.utils.UserImpl [<clinit>] user objects created 
+2021-04-09 09:59:10,944 DEBUG :com.backend.controllers.LoginController [service] User Authenticated : kch@gmail.com 
+2021-04-09 09:59:11,235 DEBUG :com.backend.applications.ChatServerEndPoint [onOpen] User Logged in 
+2021-04-09 09:59:11,369 DEBUG :com.backend.model.Message [<init>] Message Object Created 
+2021-04-09 09:59:11,374 DEBUG :com.backend.applications.ChatServerEndPoint [sendMessageThread] Sent Message Thread user 
+2021-04-09 09:59:20,256 DEBUG :com.backend.model.Message [<init>] Message Object Created 
+2021-04-09 09:59:20,257 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-09 10:00:09,507 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] kch@gmail.comabout to close 
+2021-04-09 10:00:09,507 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] Session closed 
+2021-04-09 10:00:20,548 DEBUG :org.jboss.resteasy.plugins.providers.FileProvider [<clinit>] Logging Provider: org.jboss.logging.Log4jLoggerProvider 
+2021-04-09 10:00:20,608 DEBUG :org.jboss.resteasy.plugins.providers.DocumentProvider [<init>] Provider : org.jboss.resteasy.plugins.providers.DocumentProvider,  Method : DocumentProvider 
+2021-04-09 10:00:20,629 DEBUG :org.jboss.resteasy.plugins.providers.DocumentProvider [<init>] Provider : org.jboss.resteasy.plugins.providers.DocumentProvider,  Method : DocumentProvider 

@@ -4,12 +4,15 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
 import com.backend.applications.ChatServerEndPoint;
 import com.backend.model.MessageThread;
 import com.backend.model.User;
 
 public class UserImpl 
 {
+	private static Logger log = Logger.getLogger(UserImpl.class);
 	public final static Map<String, User> allUsers = Collections.synchronizedMap(new HashMap<String,User>());
 	
 	static {
@@ -22,6 +25,7 @@ public class UserImpl
 		allUsers.put("kch2@gmail.com",new User("kch2@gmail.com", "kch"));
 		
 		ChatServerEndPoint.generateMessageThreadsToAllUsers(allUsers.keySet().iterator());
+		log.debug("user objects created");
 	}
 	
 	
