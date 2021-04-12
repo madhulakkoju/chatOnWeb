@@ -1,0 +1,11 @@
+com\backend\utils\UserImpl.class
+com\backend\utils\MessageThreadEncoder.class
+com\backend\model\MessageThread.class
+com\backend\utils\MessageEncoder.class
+com\backend\utils\MessageThreadImpl.class
+com\backend\controllers\LoginController.class
+com\backend\applications\ChatServerEndPoint.class
+com\backend\utils\MessageDecoder.class
+com\backend\model\User.class
+com\backend\utils\MessageThreadDecoder.class
+com\backend\model\Message.class

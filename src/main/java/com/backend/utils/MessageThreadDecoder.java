@@ -4,21 +4,18 @@ import javax.websocket.DecodeException;
 import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
 
-import com.backend.model.Message;
 import com.backend.model.MessageThread;
 
 public class MessageThreadDecoder implements Decoder.Text<MessageThread> {
 
 	@Override
 	public void init(EndpointConfig config) {
-		// TODO Auto-generated method stub
-		
+		// No initiations
 	}
 
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
-		
+		// No closures
 	}
 
 	@Override
@@ -29,7 +26,6 @@ public class MessageThreadDecoder implements Decoder.Text<MessageThread> {
 
 	@Override
 	public boolean willDecode(String s) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 

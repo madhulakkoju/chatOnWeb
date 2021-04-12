@@ -19,19 +19,22 @@ import javax.servlet.annotation.WebServlet;
 @WebServlet("/loginController")
 public class LoginController extends HttpServlet {
 	
+	static String email = "email";
+	static String userEmail = "userEmail";
 	private static Logger log =  Logger.getLogger(LoginController.class);
 	
+	@Override
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		HttpSession session = request.getSession();
-		System.out.println(session.getAttribute("userEmail"));
-		if(UserImpl.authenticate((String)request.getParameter("email"),(String)request.getParameter("password")))
+		log.debug(session.getAttribute(userEmail));
+		if(UserImpl.authenticate(request.getParameter(email),request.getParameter("password")))
 		{
 			session.setAttribute("loggedIn", true);
-			session.setAttribute("userEmail",(String)request.getParameter("email") );
-			log.debug("User Authenticated : "+(String)request.getParameter("email"));
+			session.setAttribute(userEmail,request.getParameter(email) );
+			log.debug("User Authenticated : "+request.getParameter(email));
 			
-			if(session.getAttribute("userEmail").equals("ADMIN_USER"))
+			if(session.getAttribute(userEmail).equals("ADMIN_USER"))
 			{
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/adminCheck.html");
 				dispatcher.forward(request,response);

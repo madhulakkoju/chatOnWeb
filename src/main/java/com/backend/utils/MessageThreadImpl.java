@@ -1,20 +1,16 @@
 package com.backend.utils;
 
 import java.util.HashMap;
-import java.util.List;
-
-import org.apache.log4j.FileAppender;
-
 import com.backend.model.MessageThread;
 
-import jdk.internal.org.jline.utils.Log;
 
 public class MessageThreadImpl 
 {
+	
 	HashMap<String,MessageThread> allMessageThreads;
 	public MessageThreadImpl()
 	{
-		allMessageThreads = new HashMap<String,MessageThread>();
+		allMessageThreads = new HashMap<>();
 
 	}
 	
@@ -29,7 +25,6 @@ public class MessageThreadImpl
 	public void deleteMessageThread(String participant)
 	{
 		allMessageThreads.remove(participant);
-		Log.debug("Message Thread Removed "+participant);
 	}
 	
 	public MessageThread createMessageThread(String participant)
@@ -38,14 +33,5 @@ public class MessageThreadImpl
 		allMessageThreads.put(participant, thread);
 		return thread;
 	}
-	public void print()
-	{
-		System.out.println("All Message Threads");
-		for(String sender : allMessageThreads.keySet() )
-		{
-			System.out.println("======>   USER : "+sender);
-			allMessageThreads.get(sender).print();
-		}
-		System.out.println("Message Threads DONE");
-	}
+
 }

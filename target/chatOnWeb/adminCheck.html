@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>HELP CHAT</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+<div class="flex-container" style="display:flex">
+
+  <div  id="chatsPane" class="flex-child magenta" style="margin-right: 80px;" >
+    <div class="green">
+    	CHATS
+    </div>
+    <table id = "chats">
+    <th>  
+    <td>ALL CHATS</td>
+    </th>
+    </table>
+    
+  </div>
+  
+  <div class="flex-child green" style="flex: 1;border: 2px solid yellow;">
+    <div id="singleChat" class="blue" style="overflow-y:scroll;overflow-x:hidden;height:500px">
+    	CHAT
+    </div>
+    <form id="do-chat">
+    <input type="text" name="message" id = "message">
+    <input type="submit" id = "send" value= "Send">
+    </form>
+  </div>
+</div>
+
+<script>
+
+var wsocket;
+var serviceLocation = "ws://localhost:8080/chatOnWeb/helpChat/";
+var $message;
+const myUserName = "ADMIN_USER"
+var currentChatUser="";
+var allChatThreads = [];
+
+var repliedStatus = {};
+
+$(document).ready(function () {
+	   
+    $message = $('#message');
+    $chatWindow = $('#showChat');
+    $alert = $('#alert');
+
+    connectToChatServer();
+
+    $('#do-chat').submit(function (evt) {
+        evt.preventDefault();
+        sendMessage()
+    });
+});
+
+function connectToChatServer()
+{
+	wsocket = new WebSocket(constructURI(serviceLocation,myUserName));
+	
+	wsocket.onerror = onConnectionError;
+    wsocket.onmessage = onMessageReceived;
+    console.log("Done");
+}
+
+function onConnectionError(evt)
+{
+	$alert.append($(evt));
+}
+
+function onMessageReceived(evt)
+{
+	console.log(evt.data);
+	var message = JSON.parse(evt.data); 
+	
+	if(Array.isArray(message))
+	{
+		console.log("Arrrrrrr");
+		createChat(message);
+		return;
+	}
+	
+	updateChatPageReceiver(message.Sender,message.Sender, message.MessageBody);
+	scrollDown("singleChat");
+}
+
+function scrollDown(id)
+{
+	var objDiv = document.getElementById(id);
+    objDiv.scrollTop = objDiv.scrollHeight;
+}
+
+function sendMessage()
+{
+	console.log("Send Message");
+	
+	msg = new Object();
+	msg.MessageBody = document.getElementById("message").value;
+	if(msg.MessageBody=="")
+		return;
+	msg.receiver = "ADMIN_USER";
+	msg.Sender = currentChatUser;
+	if(msg.Sender=="")
+		return;
+    document.getElementById("message").value="";
+	
+	//messages.push(msg);
+	// send the msg object to json to server for addition of the Data to database
+	
+	updateChatPageSender(myUserName,msg.MessageBody);
+	msg.receiver = msg.Sender;
+	// Construct message to send to server
+    var mssg = JSON.stringify(msg);
+    wsocket.send(mssg);
+	console.log(mssg);
+    // Put back focus
+    $message.val('').focus();
+    scrollDown("singleChat");
+    console.log("Sent Message");
+}
+
+
+function constructURI(serviceLocation,user)
+{
+	return serviceLocation+user;
+}
+
+
+
+function haveReplied(email)
+{
+	repliedStatus[email] = true;
+	document.getElementById(email+"_status").innerHTML='<h4>'+'Read'+' </h4';
+}
+
+
+function shouldReply(email)
+{
+	repliedStatus[email] = false;
+	document.getElementById(email+"_status").innerHTML='<h4>'+'Unread'+' </h4';
+}
+
+
+function createChat(thread)
+{
+	var details = thread.pop();
+	repliedStatus[details["Sender"]] = details["replied"];
+	if(allChatThreads[details["Sender"]] != null)
+	{
+		thread.forEach( function (item,index){
+			updateChatPageReceiver(details.Sender,item.Sender,item.MessageBody);	
+		});
+		return;
+	}
+	allChatThreads[details["Sender"]] = chatPage(details.Sender,thread);
+	
+	addMessageThread(details);
+}
+
+function chatPage(sender,messageThread)
+{
+	var table = document.createElement('table');
+	table.id = sender+"_chat";
+	console.log(table.id)
+	messageThread.forEach(
+		function (item,index)
+		{
+			var tr = document.createElement('tr');
+			var td = document.createTextNode(item.Sender);
+			tr.appendChild(td);
+			
+			var td = document.createElement('td');
+			td.appendChild(document.createTextNode(":"));
+			tr.appendChild(td);
+			
+			var td = document.createElement('td');
+			td.appendChild(document.createTextNode(item.MessageBody));
+			tr.appendChild(td);
+			
+			table.appendChild(tr);
+		}
+	);
+	return table;
+}
+
+function addMessageThread(item)
+{
+	var chats = document.getElementById("chats");
+
+	var div = document.createElement('div');
+	div.id = item["Sender"];
+	div.innerHTML = '<h4>'+item["Sender"]+'  </h4>';
+	
+	var divRead = document.createElement('div');
+	divRead.id = item["Sender"]+"_status";
+	
+	if(! item["replied"])
+	{
+		divRead.innerHTML= '<h4>'+'Unread'+'  </h4>';
+	}
+	else
+	{
+		divRead.innerHTML = '<h4>'+'Read'+' </h4';
+	}
+	div.onclick = function (){
+		var div = document.getElementById('singleChat');
+		div.innerHTML="";
+		div.appendChild(allChatThreads[item["Sender"]]);
+		currentChatUser = item.Sender;
+		//console.log(currentChatUser);
+	};
+	var row = document.createElement('tr');
+	row.append(div);
+	chats.appendChild(row);
+}
+
+
+function updateChatPageSender(sender,message)
+{
+	var table = document.getElementById(currentChatUser + "_chat");
+	
+	var tr=document.createElement('TR');
+	var td = document.createElement('TD')
+	td.appendChild(document.createTextNode(sender));
+	tr.appendChild(td);
+	
+	td = document.createElement('TD')
+	td.appendChild(document.createTextNode(":"))
+	tr.appendChild(td);
+	
+	td = document.createElement('TD')
+	td.appendChild(document.createTextNode(message));
+	tr.appendChild(td);
+	table.appendChild(tr);
+	
+}
+
+function updateChatPageReceiver(email,sender,message)
+{
+	var table = allChatThreads[email]
+	
+	var tr=document.createElement('TR');
+	var td = document.createElement('TD')
+	td.appendChild(document.createTextNode(sender));
+	tr.appendChild(td);
+	
+	td = document.createElement('TD')
+	td.appendChild(document.createTextNode(":"))
+	tr.appendChild(td);
+	
+	td = document.createElement('TD')
+	td.appendChild(document.createTextNode(message));
+	tr.appendChild(td);
+	table.appendChild(tr);
+	
+	//shouldReply(sender);
+}
+
+</script>
+
+</body>
+</html>
+
+
+
+
+

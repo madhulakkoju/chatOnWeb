@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,12 +9,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<!--  
-<script src="webapp/resources/js/websocket-client.js">
-console.log("bab");
-connectToChatServer();
-</script>
--->
 <script>
 
 
@@ -183,7 +180,7 @@ function scrollDown()
 
 <div class = "Chat" id="Chat" style ="overflow:hidden;padding:5px;text-align:center;height:200px;overflow-y:scroll;">
 <table id = "showChat" >
-
+<th id = "showChatHeader"></th>
 </table>
 </div>
 

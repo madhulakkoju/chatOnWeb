@@ -34,15 +34,19 @@ import com.backend.utils.MessageThreadDecoder;
 @ServerEndpoint(value="/helpChat/{userEmail}", encoders = {MessageEncoder.class,MessageThreadEncoder.class}, decoders = {MessageDecoder.class,MessageThreadDecoder.class})
 public class ChatServerEndPoint 
 {
+	static String userEmail = "userEmail";
+	
+	static String adminUserName = "ADMIN_USER";
+	
 	private static Logger log = Logger.getLogger(ChatServerEndPoint.class);
 	
-	public static final Map<String, MessageThread> messageThreads = Collections.synchronizedMap(new HashMap<String,MessageThread>());
+	protected static final Map<String, MessageThread> messageThreads = Collections.synchronizedMap(new HashMap<String,MessageThread>());
 	
-	public static final Map<String, Session> users = Collections.synchronizedMap(new HashMap<String,Session>());
+	protected static final Map<String, Session> users = Collections.synchronizedMap(new HashMap<String,Session>());
 	
-	public static Session adminSession = null;
+	private static  Session adminSession = null;
 	
-	public static Queue<Message> messageQueue = new LinkedList<Message>();
+	private static Queue<Message> messageQueue = new LinkedList<>();
 
 	public static void generateMessageThreadsToAllUsers(Iterator<String> iterator)
 	{
@@ -72,7 +76,6 @@ public class ChatServerEndPoint
 		try {
 			remote.sendObject(thread);
 		} catch (IOException | EncodeException e) {
-			// TODO Auto-generated catch block
 			log.error("Cannot send Message Thread to "+ email);
 			e.printStackTrace();
 		}
@@ -81,15 +84,15 @@ public class ChatServerEndPoint
 	
 	@OnOpen
 	public void onOpen(final Session session, @PathParam("userEmail") String email) {
-		System.out.println("Opening new Session/Connection");
-		Message m;
+		log.debug("Opening new Session/Connection");
+		
 		//Checking if the user is ADMIN
-		if(email.equals("ADMIN_USER"))
+		if(email.equals(adminUserName))
 		{
 			log.debug("ADMIN logged in");
 			adminSession = session;
-			session.setMaxIdleTimeout(5*60*1000);
-			session.getUserProperties().putIfAbsent("userEmail", email);
+			session.setMaxIdleTimeout((long)5*60*1000);
+			session.getUserProperties().putIfAbsent(userEmail, email);
 			// send the messages that were on the queue
 			
 			for(MessageThread thread : messageThreads.values() )
@@ -97,30 +100,17 @@ public class ChatServerEndPoint
 				try {
 					session.getBasicRemote().sendObject(thread);
 				} catch (IOException | EncodeException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 					log.error("Cannot send MessageThread");
 				}
 			}
 			
-			/*
-			while(! messageQueue.isEmpty())
-			{
-				try {
-					m = messageQueue.poll();
-					session.getBasicRemote().sendObject( m);
-				} catch (IOException | EncodeException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			*/
-			System.out.println("Admin Logged in   at    "+adminSession);
+			log.debug("Admin Logged in   at    "+adminSession);
 			return ;
 		}
 		//Non - Admin User
-		session.setMaxIdleTimeout(5*60*1000);
-		session.getUserProperties().putIfAbsent("userEmail",email);
+		session.setMaxIdleTimeout( (long)5 * 60 * 1000);
+		session.getUserProperties().putIfAbsent(userEmail,email);
 		log.debug("User Logged in");
 		MessageThread thread = getThread(email);
 		try {
@@ -130,7 +120,6 @@ public class ChatServerEndPoint
 			//send all the previous messages to the User/Client
 			sendMessageThread(session,email);
 		} catch (IOException | EncodeException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -138,11 +127,10 @@ public class ChatServerEndPoint
 	@OnMessage
 	public void onMessage(Message message,Session session)
 	{
-		System.out.println(message.getSender()+"  ;;  "+message.getText());
+		log.debug(message.getSender()+"  ;;  "+message.getText());
 		// message format being receiver ::: message
-		String sender = (String) session.getUserProperties().get("userEmail");
+		String sender = (String) session.getUserProperties().get(userEmail);
 		
-		//String[] msgArgs = message.split(" ::: ");
 		//[0] is receiver
 		//[1] is message
 		log.debug("Message Received at serrver");
@@ -150,14 +138,14 @@ public class ChatServerEndPoint
 		String[] msgArgs = {message.getSender(),message.getText()};
 		
 		//Sender is Admin
-		if(sender.equals("ADMIN_USER"))
+		if(sender.equals(adminUserName))
 		{
-			message.setSender("ADMIN_USER");
+			message.setSender(adminUserName);
 			//Admin sends message in format of Receiver ::: message
 			// so string sender is receiver here
 			if(users.get(msgArgs[0])==null)
 			{
-				System.out.println(msgArgs[0] + " Offline");
+				log.info(msgArgs[0] + " Offline");
 			}
 			else
 			{
@@ -165,15 +153,12 @@ public class ChatServerEndPoint
 					
 				users.get(msgArgs[0]).getBasicRemote().sendObject(message);
 				} catch (EncodeException |IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 			// save this message to messageThread
 			
 			getThread(msgArgs[0]).addMessage(message);
-			
-			return;
 		}
 		
 		else
@@ -185,7 +170,6 @@ public class ChatServerEndPoint
 				try {
 					adminSession.getBasicRemote().sendObject(message);
 				} catch (IOException | EncodeException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -203,16 +187,16 @@ public class ChatServerEndPoint
 	@OnClose
 	public void onClose(Session session, CloseReason reason)
 	{
-		log.debug(session.getUserProperties().get("userEmail") + "about to close");
+		log.debug(session.getUserProperties().get(userEmail) + "about to close");
 		if(session == adminSession)
 		{
-			System.out.println("Session removed "+ session.getUserProperties().get("userEmail"));
+			log.debug("Session removed "+ session.getUserProperties().get(userEmail));
 			adminSession = null;
 		}
 		else
 		{
-			System.out.println("Session removed "+ session.getUserProperties().get("userEmail"));
-			users.remove(session.getUserProperties().get("userEmail"));
+			log.debug("Session removed "+ session.getUserProperties().get(userEmail));
+			users.remove(session.getUserProperties().get(userEmail));
 			
 		}	
 		log.debug("Session closed");

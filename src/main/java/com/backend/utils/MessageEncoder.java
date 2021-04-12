@@ -1,17 +1,10 @@
 package com.backend.utils;
 
-import java.io.IOException;
 import java.util.Date;
 
 import javax.json.Json;
-import javax.json.JsonValue;
-import javax.websocket.EncodeException;
 import javax.websocket.Encoder;
 import javax.websocket.EndpointConfig;
-
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
 
 import com.backend.model.Message;
 
@@ -19,54 +12,23 @@ public class MessageEncoder implements Encoder.Text<Message> {
 	
 	@Override
 	public void init(EndpointConfig config) {
-		// TODO Auto-generated method stub
-		
+		// No initiations needed
 	}
 
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
-		
+		// No object closures to take care of
 	}
 
 	@Override
 	public String encode(Message message) {
-		// TODO Auto-generated method stub
-		
-		/*
-		ObjectMapper mapper = new ObjectMapper();
-		
-		try {
-			return mapper.writeValueAsString(message);
-		} catch (JsonGenerationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
-		
 		return Json.createObjectBuilder()
 				.add("Sender",message.getSender())
 				.add("MessageBody",message.getText())
 				.add("Time",new Date().toString())
 				.build()
 				.toString();
-			
-		
-		/*
-		return Json.createObjectBuilder()
-			.add("Sender","System")
-			.add("MessageBody","Hello User")
-			.add("Time",new Date().toString())
-			.build()
-			.toString();
-		*/
-			
+	
 	}
 
 }

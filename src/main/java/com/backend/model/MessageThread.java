@@ -9,14 +9,14 @@ import org.apache.log4j.Logger;
 public class MessageThread implements Serializable
 {
 	private static Logger log = Logger.getLogger(MessageThread.class);
-	String participant;
-	List<Message> messagesList;
+	private final String participant;
+	private List<Message> messagesList;
 	boolean replied;
 	
 	public MessageThread(String participant)
 	{
 		this.participant = participant;
-		messagesList = new ArrayList<Message>(10);
+		messagesList = new ArrayList<>(10);
 		this.addMessage(new Message("SYSTEM","Hello "+participant));
 		replied = false;
 		log.debug("Message Thread Object Created for User : " + participant);
@@ -35,24 +35,11 @@ public class MessageThread implements Serializable
 		return participant;
 	}
 
-	public void setParticipant(String participant) {
-		this.participant = participant;
-	}
-
 	public List<Message> getMessages()
 	{
 		return this.messagesList;
 	}
 	
-	public void print()
-	{
-		System.out.println("----------------CHAT-----------------");
-		for(Message m: messagesList)
-		{
-			System.out.println(m.getSender()+" : "+m.getText());
-		}
-	}
-
 	public boolean isReplied() {
 		return replied;
 	}
