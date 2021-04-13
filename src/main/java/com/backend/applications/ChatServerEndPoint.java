@@ -44,7 +44,7 @@ public class ChatServerEndPoint
 	
 	protected static final Map<String, Session> users = Collections.synchronizedMap(new HashMap<String,Session>());
 	
-	private static  Session adminSession = null;
+	private static volatile Session adminSession = null;
 	
 	private static Queue<Message> messageQueue = new LinkedList<>();
 
