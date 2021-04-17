@@ -17,7 +17,7 @@ connectToChatServer();
 
 
 var wsocket;
-var serviceLocation = "ws://madhu:8080/chatOnWeb/helpChat/";
+var serviceLocation = "ws://localhost:8080/chatOnWeb/helpChat/";
 var $nickName;
 var $message;
 var $chatWindow;
