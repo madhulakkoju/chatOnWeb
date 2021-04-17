@@ -99,14 +99,6 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.4.9.Final</version>
         </dependency>
-<!-- https://mvnrepository.com/artifact/org.codehaus.mojo/sonar-maven-plugin -->
-<dependency>
-    <groupId>org.codehaus.mojo</groupId>
-    <artifactId>sonar-maven-plugin</artifactId>
-    <version>3.2</version>
-    <type>pom</type>
-</dependency>
-
 
 
   </dependencies>
