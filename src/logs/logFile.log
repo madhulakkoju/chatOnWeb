@@ -1,0 +1,198 @@
+2021-04-17 21:49:49,669 DEBUG :org.jboss.resteasy.plugins.providers.FileProvider [<clinit>] Logging Provider: org.jboss.logging.Log4jLoggerProvider 
+2021-04-17 21:49:49,694 DEBUG :org.jboss.resteasy.plugins.providers.DocumentProvider [<init>] Provider : org.jboss.resteasy.plugins.providers.DocumentProvider,  Method : DocumentProvider 
+2021-04-17 21:49:49,719 DEBUG :org.jboss.resteasy.plugins.providers.DocumentProvider [<init>] Provider : org.jboss.resteasy.plugins.providers.DocumentProvider,  Method : DocumentProvider 
+2021-04-17 22:00:08,233 DEBUG :org.jboss.resteasy.plugins.providers.FileProvider [<clinit>] Logging Provider: org.jboss.logging.Log4jLoggerProvider 
+2021-04-17 22:00:08,297 DEBUG :org.jboss.resteasy.plugins.providers.DocumentProvider [<init>] Provider : org.jboss.resteasy.plugins.providers.DocumentProvider,  Method : DocumentProvider 
+2021-04-17 22:00:08,313 DEBUG :org.jboss.resteasy.plugins.providers.DocumentProvider [<init>] Provider : org.jboss.resteasy.plugins.providers.DocumentProvider,  Method : DocumentProvider 
+2021-04-17 22:01:39,359 DEBUG :org.jboss.resteasy.plugins.providers.FileProvider [<clinit>] Logging Provider: org.jboss.logging.Log4jLoggerProvider 
+2021-04-17 22:01:39,414 DEBUG :org.jboss.resteasy.plugins.providers.DocumentProvider [<init>] Provider : org.jboss.resteasy.plugins.providers.DocumentProvider,  Method : DocumentProvider 
+2021-04-17 22:01:39,429 DEBUG :org.jboss.resteasy.plugins.providers.DocumentProvider [<init>] Provider : org.jboss.resteasy.plugins.providers.DocumentProvider,  Method : DocumentProvider 
+2021-04-17 22:01:57,186 DEBUG :org.jboss.resteasy.plugins.providers.FileProvider [<clinit>] Logging Provider: org.jboss.logging.Log4jLoggerProvider 
+2021-04-17 22:01:57,240 DEBUG :org.jboss.resteasy.plugins.providers.DocumentProvider [<init>] Provider : org.jboss.resteasy.plugins.providers.DocumentProvider,  Method : DocumentProvider 
+2021-04-17 22:01:57,255 DEBUG :org.jboss.resteasy.plugins.providers.DocumentProvider [<init>] Provider : org.jboss.resteasy.plugins.providers.DocumentProvider,  Method : DocumentProvider 
+2021-04-17 22:03:46,877 DEBUG :org.jboss.resteasy.plugins.providers.FileProvider [<clinit>] Logging Provider: org.jboss.logging.Log4jLoggerProvider 
+2021-04-17 22:03:46,936 DEBUG :org.jboss.resteasy.plugins.providers.DocumentProvider [<init>] Provider : org.jboss.resteasy.plugins.providers.DocumentProvider,  Method : DocumentProvider 
+2021-04-17 22:03:46,951 DEBUG :org.jboss.resteasy.plugins.providers.DocumentProvider [<init>] Provider : org.jboss.resteasy.plugins.providers.DocumentProvider,  Method : DocumentProvider 
+2021-04-17 22:06:02,949 DEBUG :org.jboss.resteasy.plugins.providers.FileProvider [<clinit>] Logging Provider: org.jboss.logging.Log4jLoggerProvider 
+2021-04-17 22:06:02,999 DEBUG :org.jboss.resteasy.plugins.providers.DocumentProvider [<init>] Provider : org.jboss.resteasy.plugins.providers.DocumentProvider,  Method : DocumentProvider 
+2021-04-17 22:06:03,006 DEBUG :org.jboss.resteasy.plugins.providers.DocumentProvider [<init>] Provider : org.jboss.resteasy.plugins.providers.DocumentProvider,  Method : DocumentProvider 
+2021-04-17 22:06:39,367 DEBUG :org.jboss.resteasy.plugins.providers.FileProvider [<clinit>] Logging Provider: org.jboss.logging.Log4jLoggerProvider 
+2021-04-17 22:06:39,414 DEBUG :org.jboss.resteasy.plugins.providers.DocumentProvider [<init>] Provider : org.jboss.resteasy.plugins.providers.DocumentProvider,  Method : DocumentProvider 
+2021-04-17 22:06:39,421 DEBUG :org.jboss.resteasy.plugins.providers.DocumentProvider [<init>] Provider : org.jboss.resteasy.plugins.providers.DocumentProvider,  Method : DocumentProvider 
+2021-04-17 22:08:16,613 DEBUG :com.backend.controllers.LoginController [service]  
+2021-04-17 22:08:16,692 DEBUG :com.backend.model.User [<init>] New User Registered : ADMIN_USER 
+2021-04-17 22:08:16,692 DEBUG :com.backend.model.User [<init>] New User Registered : madhu.ml193@gmail.com 
+2021-04-17 22:08:16,692 DEBUG :com.backend.model.User [<init>] New User Registered : kch@gmail.com 
+2021-04-17 22:08:16,693 DEBUG :com.backend.model.User [<init>] New User Registered : madhu@gmail.com 
+2021-04-17 22:08:16,693 DEBUG :com.backend.model.User [<init>] New User Registered : kch1@gmail.com 
+2021-04-17 22:08:16,693 DEBUG :com.backend.model.User [<init>] New User Registered : madhu3@gmail.com 
+2021-04-17 22:08:16,695 DEBUG :com.backend.model.User [<init>] New User Registered : kch2@gmail.com 
+2021-04-17 22:08:16,695 DEBUG :com.backend.model.MessageThread [<init>] Message Thread Object Created for User : kch@gmail.com 
+2021-04-17 22:08:16,695 DEBUG :com.backend.model.MessageThread [<init>] Message Thread Object Created for User : kch1@gmail.com 
+2021-04-17 22:08:16,696 DEBUG :com.backend.model.MessageThread [<init>] Message Thread Object Created for User : madhu@gmail.com 
+2021-04-17 22:08:16,696 DEBUG :com.backend.model.MessageThread [<init>] Message Thread Object Created for User : madhu3@gmail.com 
+2021-04-17 22:08:16,696 DEBUG :com.backend.model.MessageThread [<init>] Message Thread Object Created for User : kch2@gmail.com 
+2021-04-17 22:08:16,696 DEBUG :com.backend.model.MessageThread [<init>] Message Thread Object Created for User : ADMIN_USER 
+2021-04-17 22:08:16,696 DEBUG :com.backend.model.MessageThread [<init>] Message Thread Object Created for User : madhu.ml193@gmail.com 
+2021-04-17 22:08:16,697 DEBUG :com.backend.applications.ChatServerEndPoint [generateMessageThreadsToAllUsers] Generated Empty Message Threads to users if needed 
+2021-04-17 22:08:16,697 DEBUG :com.backend.utils.UserImpl [<clinit>] user objects created 
+2021-04-17 22:09:17,213 DEBUG :com.backend.controllers.LoginController [service]  
+2021-04-17 22:09:17,214 DEBUG :com.backend.controllers.LoginController [service] User Authenticated : madhu.ml193@gmail.com 
+2021-04-17 22:09:18,344 DEBUG :com.backend.applications.ChatServerEndPoint [onOpen] Opening new Session/Connection 
+2021-04-17 22:09:18,344 DEBUG :com.backend.applications.ChatServerEndPoint [onOpen] User Logged in 
+2021-04-17 22:09:18,408 DEBUG :com.backend.applications.ChatServerEndPoint [sendMessageThread] Sent Message Thread user 
+2021-04-17 22:10:16,597 DEBUG :com.backend.controllers.LoginController [service] madhu.ml193@gmail.com 
+2021-04-17 22:10:16,598 DEBUG :com.backend.controllers.LoginController [service] User Authenticated : ADMIN_USER 
+2021-04-17 22:10:16,725 DEBUG :com.backend.applications.ChatServerEndPoint [onOpen] Opening new Session/Connection 
+2021-04-17 22:10:16,726 DEBUG :com.backend.applications.ChatServerEndPoint [onOpen] ADMIN logged in 
+2021-04-17 22:10:16,764 DEBUG :com.backend.applications.ChatServerEndPoint [onOpen] Admin Logged in   at    org.apache.tomcat.websocket.WsSession@585ee11e 
+2021-04-17 22:10:37,146 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  fdfs 
+2021-04-17 22:10:37,146 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:40,530 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  sdfsdf 
+2021-04-17 22:10:40,530 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:41,194 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  sdfsdf 
+2021-04-17 22:10:41,195 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:41,590 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  sdf 
+2021-04-17 22:10:41,590 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:41,760 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  s 
+2021-04-17 22:10:41,760 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:41,930 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  f 
+2021-04-17 22:10:41,930 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:42,650 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  dfsdfsdfs 
+2021-04-17 22:10:42,651 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:42,979 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  f 
+2021-04-17 22:10:42,980 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:43,173 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  d 
+2021-04-17 22:10:43,173 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:43,351 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  s 
+2021-04-17 22:10:43,352 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:43,489 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  f 
+2021-04-17 22:10:43,489 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:48,453 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  sdfsdf 
+2021-04-17 22:10:48,453 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:50,043 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  sdfsdfs 
+2021-04-17 22:10:50,043 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:50,663 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  sdfsdf 
+2021-04-17 22:10:50,663 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:50,871 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  sd 
+2021-04-17 22:10:50,871 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:51,095 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  s 
+2021-04-17 22:10:51,096 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:51,303 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  f 
+2021-04-17 22:10:51,303 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:51,519 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  df 
+2021-04-17 22:10:51,519 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:51,729 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  d 
+2021-04-17 22:10:51,729 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:51,921 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  s 
+2021-04-17 22:10:51,921 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:52,123 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  f 
+2021-04-17 22:10:52,123 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:52,300 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  df 
+2021-04-17 22:10:52,300 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:52,464 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  d 
+2021-04-17 22:10:52,464 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:56,922 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] kch2@gmail.com  ;;  sdfsdfsf 
+2021-04-17 22:10:56,923 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:56,923 INFO :com.backend.applications.ChatServerEndPoint [onMessage] kch2@gmail.com Offline 
+2021-04-17 22:10:57,255 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] kch2@gmail.com  ;;  sdf 
+2021-04-17 22:10:57,255 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:10:57,256 INFO :com.backend.applications.ChatServerEndPoint [onMessage] kch2@gmail.com Offline 
+2021-04-17 22:11:00,385 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] kch2@gmail.com  ;;  dfsf 
+2021-04-17 22:11:00,385 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:11:00,386 INFO :com.backend.applications.ChatServerEndPoint [onMessage] kch2@gmail.com Offline 
+2021-04-17 22:11:01,666 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] kch2@gmail.com  ;;  sdf 
+2021-04-17 22:11:01,666 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:11:01,667 INFO :com.backend.applications.ChatServerEndPoint [onMessage] kch2@gmail.com Offline 
+2021-04-17 22:11:03,108 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] kch2@gmail.com  ;;  sffsfs 
+2021-04-17 22:11:03,108 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:11:03,108 INFO :com.backend.applications.ChatServerEndPoint [onMessage] kch2@gmail.com Offline 
+2021-04-17 22:11:06,211 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  sdfsdf 
+2021-04-17 22:11:06,211 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:11:10,801 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  sdfsdf 
+2021-04-17 22:11:10,801 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:11:12,703 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu.ml193@gmail.com  ;;  sdf 
+2021-04-17 22:11:12,703 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:11:17,536 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] madhu.ml193@gmail.comabout to close 
+2021-04-17 22:11:17,537 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] Session removed madhu.ml193@gmail.com 
+2021-04-17 22:11:17,537 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] Session closed 
+2021-04-17 22:11:32,990 DEBUG :com.backend.controllers.LoginController [service] ADMIN_USER 
+2021-04-17 22:11:32,991 DEBUG :com.backend.controllers.LoginController [service] User Authenticated : kch2@gmail.com 
+2021-04-17 22:11:33,226 DEBUG :com.backend.applications.ChatServerEndPoint [onOpen] Opening new Session/Connection 
+2021-04-17 22:11:33,226 DEBUG :com.backend.applications.ChatServerEndPoint [onOpen] User Logged in 
+2021-04-17 22:11:33,259 DEBUG :com.backend.applications.ChatServerEndPoint [sendMessageThread] Sent Message Thread user 
+2021-04-17 22:11:41,423 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] kch2@gmail.com  ;;  sdfsdfsdf 
+2021-04-17 22:11:41,423 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:11:57,787 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] kch2@gmail.com  ;;  sdfff sdfs  
+2021-04-17 22:11:57,787 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:12:01,057 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] kch2@gmail.com  ;;  sdfsdfs 
+2021-04-17 22:12:01,057 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:12:03,860 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] kch2@gmail.com  ;;  dffdfdf 
+2021-04-17 22:12:03,860 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:12:05,407 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] kch2@gmail.com  ;;  fdfdfdf 
+2021-04-17 22:12:05,407 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:12:07,541 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] kch2@gmail.com  ;;  dffdfdf 
+2021-04-17 22:12:07,541 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:12:08,857 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] kch2@gmail.com  ;;  ss 
+2021-04-17 22:12:08,858 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:12:10,033 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] kch2@gmail.com  ;;  sss 
+2021-04-17 22:12:10,033 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:12:11,955 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] kch2@gmail.com  ;;  sss 
+2021-04-17 22:12:11,955 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:12:13,305 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] kch2@gmail.comabout to close 
+2021-04-17 22:12:13,305 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] Session removed kch2@gmail.com 
+2021-04-17 22:12:13,305 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] Session closed 
+2021-04-17 22:12:18,528 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] kch2@gmail.com  ;;  dddddd 
+2021-04-17 22:12:18,529 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:12:18,529 INFO :com.backend.applications.ChatServerEndPoint [onMessage] kch2@gmail.com Offline 
+2021-04-17 22:12:38,925 DEBUG :com.backend.controllers.LoginController [service] kch2@gmail.com 
+2021-04-17 22:12:38,926 DEBUG :com.backend.controllers.LoginController [service] User Authenticated : kch2@gmail.com 
+2021-04-17 22:12:38,987 DEBUG :com.backend.applications.ChatServerEndPoint [onOpen] Opening new Session/Connection 
+2021-04-17 22:12:38,987 DEBUG :com.backend.applications.ChatServerEndPoint [onOpen] User Logged in 
+2021-04-17 22:12:39,018 DEBUG :com.backend.applications.ChatServerEndPoint [sendMessageThread] Sent Message Thread user 
+2021-04-17 22:14:19,144 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] kch2@gmail.comabout to close 
+2021-04-17 22:14:19,144 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] Session removed kch2@gmail.com 
+2021-04-17 22:14:19,144 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] Session closed 
+2021-04-17 22:14:31,901 DEBUG :com.backend.controllers.LoginController [service] kch2@gmail.com 
+2021-04-17 22:14:31,901 DEBUG :com.backend.controllers.LoginController [service] User Authenticated : madhu@gmail.com 
+2021-04-17 22:14:31,969 DEBUG :com.backend.applications.ChatServerEndPoint [onOpen] Opening new Session/Connection 
+2021-04-17 22:14:31,970 DEBUG :com.backend.applications.ChatServerEndPoint [onOpen] User Logged in 
+2021-04-17 22:14:32,000 DEBUG :com.backend.applications.ChatServerEndPoint [sendMessageThread] Sent Message Thread user 
+2021-04-17 22:14:38,300 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu@gmail.com  ;;  hjhjh 
+2021-04-17 22:14:38,301 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:14:39,508 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] madhu@gmail.com  ;;  hjhj 
+2021-04-17 22:14:39,509 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:14:41,616 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] madhu@gmail.comabout to close 
+2021-04-17 22:14:41,616 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] Session removed madhu@gmail.com 
+2021-04-17 22:14:41,616 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] Session closed 
+2021-04-17 22:14:52,286 DEBUG :com.backend.controllers.LoginController [service] madhu@gmail.com 
+2021-04-17 22:14:52,286 DEBUG :com.backend.controllers.LoginController [service] User Authenticated : madhu@gmail.com 
+2021-04-17 22:14:52,346 DEBUG :com.backend.applications.ChatServerEndPoint [onOpen] Opening new Session/Connection 
+2021-04-17 22:14:52,346 DEBUG :com.backend.applications.ChatServerEndPoint [onOpen] User Logged in 
+2021-04-17 22:14:52,371 DEBUG :com.backend.applications.ChatServerEndPoint [sendMessageThread] Sent Message Thread user 
+2021-04-17 22:15:28,504 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] kch1@gmail.com  ;;  dfgdf 
+2021-04-17 22:15:28,504 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:15:28,505 INFO :com.backend.applications.ChatServerEndPoint [onMessage] kch1@gmail.com Offline 
+2021-04-17 22:15:29,912 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] kch1@gmail.com  ;;  vcbcvb 
+2021-04-17 22:15:29,912 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:15:29,912 INFO :com.backend.applications.ChatServerEndPoint [onMessage] kch1@gmail.com Offline 
+2021-04-17 22:15:31,814 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] kch1@gmail.com  ;;  qqqqqqq 
+2021-04-17 22:15:31,814 DEBUG :com.backend.applications.ChatServerEndPoint [onMessage] Message Received at serrver 
+2021-04-17 22:15:31,815 INFO :com.backend.applications.ChatServerEndPoint [onMessage] kch1@gmail.com Offline 
+2021-04-17 22:15:37,590 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] madhu@gmail.comabout to close 
+2021-04-17 22:15:37,590 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] Session removed madhu@gmail.com 
+2021-04-17 22:15:37,590 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] Session closed 
+2021-04-17 22:15:48,702 DEBUG :com.backend.controllers.LoginController [service] madhu@gmail.com 
+2021-04-17 22:15:48,702 DEBUG :com.backend.controllers.LoginController [service] User Authenticated : kch1@gmail.com 
+2021-04-17 22:15:48,767 DEBUG :com.backend.applications.ChatServerEndPoint [onOpen] Opening new Session/Connection 
+2021-04-17 22:15:48,768 DEBUG :com.backend.applications.ChatServerEndPoint [onOpen] User Logged in 
+2021-04-17 22:15:48,802 DEBUG :com.backend.applications.ChatServerEndPoint [sendMessageThread] Sent Message Thread user 
+2021-04-17 22:18:10,510 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] ADMIN_USERabout to close 
+2021-04-17 22:18:10,511 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] Session removed ADMIN_USER 
+2021-04-17 22:18:10,511 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] Session closed 
+2021-04-17 22:18:10,511 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] kch1@gmail.comabout to close 
+2021-04-17 22:18:10,511 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] Session removed kch1@gmail.com 
+2021-04-17 22:18:10,512 DEBUG :com.backend.applications.ChatServerEndPoint [onClose] Session closed 
+2021-04-17 22:18:13,190 DEBUG :org.jboss.resteasy.plugins.providers.FileProvider [<clinit>] Logging Provider: org.jboss.logging.Log4jLoggerProvider 
+2021-04-17 22:18:13,237 DEBUG :org.jboss.resteasy.plugins.providers.DocumentProvider [<init>] Provider : org.jboss.resteasy.plugins.providers.DocumentProvider,  Method : DocumentProvider 
+2021-04-17 22:18:13,244 DEBUG :org.jboss.resteasy.plugins.providers.DocumentProvider [<init>] Provider : org.jboss.resteasy.plugins.providers.DocumentProvider,  Method : DocumentProvider 

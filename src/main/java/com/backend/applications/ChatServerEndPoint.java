@@ -114,11 +114,10 @@ public class ChatServerEndPoint
 		log.debug("User Logged in");
 		MessageThread thread = getThread(email);
 		try {
+			//send all the previous messages to the User/Client
 			session.getBasicRemote().sendObject(thread);
 			session.getBasicRemote().sendObject( new Message("System","Welcome"));
 			users.put(email, session);
-			//send all the previous messages to the User/Client
-			sendMessageThread(session,email);
 		} catch (IOException | EncodeException e) {
 			e.printStackTrace();
 		}
